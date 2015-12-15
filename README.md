@@ -6,7 +6,7 @@ MILHorizontalCollectionView
 <img src="README_ASSETS/MILHorizontalCollectionViewControllerExample.gif"  alt="Drawing" height=250 border=0 /></p>
 
 <br>
-MILHorizontalCollectionView is an easy to use, drop-in, reusable UI component built in Swift to display in a horizontal row, collection view cells that are horizontally scrollable. When the collection view scrolls, it has momentum that allows it to continue to scroll and always land on a full collection view cell (without partially cropping a cell off screen). The collection view can be customized to handle and display any type of data after some minor changes (explained below). By default, the collection view is writen to display images in each cell.
+MILHorizontalCollectionView is an easy to use, drop-in, reusable UI component built in Swift to display in a horizontal row, collection view cells that are horizontally scrollable. When the collection view scrolls, it has momentum that allows it to continue to scroll and always land on a full collection view cell (without partially cropping a cell off screen). The collection view can be customized to handle and display any type of data after some minor changes (explained below). By default, the collection view is writen to display images in each cell. MILHorizontalCollectionView has the ability to display local images stored in the xcode project as well as has the ability to asynchronously download and cache images from image URLs using its built in functionality or using third party framework [SDWebImage](https://github.com/rs/SDWebImage).
 
 While the MILHorizontalCollectionView is fully functional out the the box, I suspect you will have to modify it to some extent to match your app's UI design.
 
@@ -35,7 +35,7 @@ For both storyboard and programatic implementations, you can reference the `View
 	var programaticHorizontalCollectionViewController : MILHorizontalCollectionViewController!
 ```
     
-1. To initialize an instance of MILHorizontalCollectionViewController programmatically and set it the view controllers property we do:
+1. To initialize an instance of MILHorizontalCollectionViewController programmatically and set it the view controller's property we do:
 
 	```swift
 	let flow = MILHorizontalCollectionViewFlowLayout()
@@ -49,7 +49,7 @@ For both storyboard and programatic implementations, you can reference the `View
 ```
  		
  		
-1. To add the MILHorizontalCollectionViewController's view to the view controller we do:
+1. To add the MILHorizontalCollectionViewController's view to the view controller's view we do:
 
 	```swift
 	self.addChildViewController(self.programaticHorizontalCollectionViewController)
@@ -60,11 +60,11 @@ For both storyboard and programatic implementations, you can reference the `View
 <br>
 ### Storyboard Implementation
 
-1. On the view controller you would like to add the MILHorizontalCollectionView to, add a `Container View` to the view controller's view and delete `UIViewController` storyboard auto embeded in the container view. Add the appropriate autolayout constraints to the container view so that it displays to your liking within the view controller's view. The height you make the container view will define the height of the MILHorizontalCollectionView as well as the collection view cells in the MILHorizontalCollectionView. Your storyboard should now look like this: <p align="center">
+1. On the view controller you would like to add the MILHorizontalCollectionView to, add a `Container View` to the view controller's view and delete the `UIViewController` storyboard auto embeded in the container view. Add the appropriate autolayout constraints to the container view so that it displays to your liking within the view controller's view. The height you make the container view will define the height of the MILHorizontalCollectionView as well as the height of the collection view cells in the MILHorizontalCollectionView. Your storyboard should now look like this: <p align="center">
 <img src="README_ASSETS/storyboard_implementation_step1.png"  alt="Drawing" width=600 border=0 /></p>
 1. Next add a `UICollectionViewController` to the storyboard. Select this collection view controller on storyboard so that it's highlighted and then select the `Identity Inspector` of the `Utilies` sidebar. Under "Custom Class" make the UICollectionViewController a subclass of `MILHorizontalCollectionViewController`<p align="center">
 <img src="README_ASSETS/identity_inspector.png"  alt="Drawing" height=150 border=0 /></p>
-1. Hold down the control key while you click and drag from the container view on the view controller to the UICollectionViewController. A dialog box will show asking you what kind of segue you would like to choose, select `embed`.<p align="center">
+1. Hold down the control key while you click and drag from the container view on the view controller to the UICollectionViewController. A dialog box will show asking you what kind of segue you would like to choose, select `Embed`.<p align="center">
 <img src="README_ASSETS/embed_segue.png"  alt="Drawing" width=200 border=0 /></p>Your storyboard should now look like this:<p align="center">
 <img src="README_ASSETS/after_adding_embeded_segue.png"  alt="Drawing" width=700 border=0 /></p>
 1. Select the segue arrow that was just added that goes from the Container View to the MILHorizontalCollectionViewController. In the `Attributes Inspector` change the `Storyboard Embed Segue Identifier` to  `horizontalCollectionView`.<p align="center">
@@ -108,8 +108,28 @@ self.storyboardHorizontalCollectionView.setUpWithInitialPlaceHolderItems(n)
 <br>	
 ###Passing Data to the MILHorizontalCollectionViewController
 		
-By default, the MILHorizontalCollectionViewController expects to handle an array of strings that represent a URL, with its built in asychronous image url downloading and caching mechanisms. However, it should be noted that it also supports handling image url strings using the sdWebImage framework. In addition, the MILHorizontalCollectionViewController can handle an array of strings that represent names of locally stored images in the Xcode project.  
-<br>
+By default, the MILHorizontalCollectionViewController expects to handle an array of strings that represent a URL, with its built in asychronous image url downloading and caching mechanisms. However, it should be noted that it also supports handling image url strings using the [SDWebImage](https://github.com/rs/SDWebImage) framework. In addition, the MILHorizontalCollectionViewController can handle an array of strings that represent names of locally stored images in the Xcode project.  
+
+
+Chances are when you try to resolve imageURL's to images you will get the following warning and you won't be able to download the images:
+
+```
+App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
+Error: The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.
+```
+
+To fix this, go to your `info.plist` file and add the following:
+
+```
+<key>NSAppTransportSecurity</key>
+<dict>
+  <!--Include to allow all connections-->
+  <key>NSAllowsArbitraryLoads</key>
+      <true/>
+</dict>
+```
+
+This of course is the lazy way to fix the problem. Eventually you would want to specify which specific web domains you want the app to accept. For more information about this try [this article](http://www.neglectedpotential.com/2015/06/working-with-apples-application-transport-security)
 
 - To pass an array of `image url strings` to the collection view and have the collection view handle this using its **built in asychronous image url downloading and caching** we can do:
 
@@ -124,7 +144,7 @@ By default, the MILHorizontalCollectionViewController expects to handle an array
 	
 	```
 <br>		    
-- To pass an array of `image url strings` to the collection view and have the collection view handle this using the **sdWebImage** framework we can do
+- To pass an array of `image url strings` to the collection view and have the collection view handle this using the **[SDWebImage](https://github.com/rs/SDWebImage)** framework we can do:
 
 	```	swift	
 	self.setToHandleImageURLStringsUsingSDWebImage()
@@ -136,6 +156,24 @@ By default, the MILHorizontalCollectionViewController expects to handle an array
 	self.storyboardHorizontalCollectionView.refresh(imageNameArray)
 	
 	```
+	
+	Note that in order to use SDWebImage, you must import SDWebImage into your xcode project yourself. As well you will need to uncomment the code in the `setUpCellWithImageURLUsingSDWebImage` method in the `MILHorizontalCollectionViewController.swift` file shown below:
+
+	```swift	
+private func setUpCellWithImageURLUsingSDWebImage(cell : MILHorizontalCollectionViewCell, indexPath : NSIndexPath) -> MILHorizontalCollectionViewCell {
+        
+        
+        //Code commented out since SDWebImage isn't imported in the project and to surpress errors and warnings, uncomment to use with sdWebImage
+       /* 
+        let urlString = self.dataArray[indexPath.row]
+        let url = NSURL(string: urlString)
+        
+        cell.imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: self.localPlaceHolderImageName))
+        */
+        
+        return cell
+    }
+```	 
 <br>
 - To pass an array of `strings that represent locally stored images` to the collection view we can do:
 
@@ -150,7 +188,7 @@ By default, the MILHorizontalCollectionViewController expects to handle an array
 	```
 
 <br>
-## Customizing MILHorizontalCollectionViewController
+## Customizing MILHorizontalCollectionView
 
 ###Changing the Height and Width of the Collection View Cells
 
@@ -189,7 +227,7 @@ To change the UI of the collection view cell, you can do this by modifying the `
 
 <br>
 ## Requirements
-* MILHorizontalCollectionViewController has only been tested to work with iOS 9+ and Xcode 7.1.1
+* MILHorizontalCollectionView has only been tested to work with iOS 9+ and Xcode 7.1.1
 
 ## Author
 
