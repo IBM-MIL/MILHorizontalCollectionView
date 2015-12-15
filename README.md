@@ -24,7 +24,7 @@ Simply copy the **`MILHorizontalCollectionView`** **folder** into your Xcode pro
 <br>
 ## Adding MILHorizontalCollectionView To A View Controller
 
-For both storyboard and programatic implementations, open the `ViewController.swift`file in the example xcode project to see an example in context.
+For both storyboard and programatic implementations, you can reference the `ViewController.swift`file in the example xcode project to see an example in context.
 
 <br>
 ### Programatic Implementation 
@@ -88,7 +88,7 @@ For both storyboard and programatic implementations, open the `ViewController.sw
         
 <br>    
 ## Usage
-<br>
+
 ###Set Placeholder Cell Image and Number of Placeholder Cells       
     
 A placeholder cell is a cell that is displayed in the MILHorizontalCollectionView while it waits to be passed data from it's parent view controller. This can be useful if there is a delay from retrieving data from a server call. Typically you would want to display enough cells in the collection view to fill up the whole collection view horizontally. It should be noted that if you dont set the number of placeholder cells, the collection view won't show up and will appear as plain white. The following code snippets can be used after you init a MILHorizontalCollectionView programmatically, or once you get reference to the storyboard MILHorizontalCollectionView in the prepareForSegue method. (Examples shown in the example project)
@@ -151,7 +151,7 @@ By default, the MILHorizontalCollectionViewController expects to handle an array
 
 <br>
 ## Customizing MILHorizontalCollectionViewController
-<br>
+
 ###Changing the Height and Width of the Collection View Cells
 
 - The `height` of a collection view cell changes with respect to the collection view controller's view height. 
@@ -198,7 +198,7 @@ Created by [Alex Buck](https://www.linkedin.com/in/alexanderbuck)
 
 ## License
 
-MILHorizontalCollectionViewController is available under the Apache 2.0 license. See the LICENSE file for more info.
+MILHorizontalCollectionView is available under the Apache 2.0 license. See the LICENSE file for more info.
 
 ## Sample App License
 The MILHorizontalCollectionViewExample sample application is available under the Apple SDK Sample Code License. Details in the file called `SAMPLE_APP_LICENSE` under the Example directory.
