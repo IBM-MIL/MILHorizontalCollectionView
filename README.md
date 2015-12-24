@@ -147,13 +147,13 @@ This of course is the lazy way to fix the problem. Eventually you would want to 
 - To pass an array of `image url strings` to the collection view and have the collection view handle this using the **[SDWebImage](https://github.com/rs/SDWebImage)** framework we can do:
 
 	```	swift	
-	self.setToHandleImageURLStringsUsingSDWebImage()
+	self.horizontalCollectionView.setToHandleImageURLStringsUsingSDWebImage()
 	 		
 	let imageURLArray = [String]()
 	//populate this array with url strings
 		    
 	//pass array of strings that represent URLs of images
-	self.storyboardHorizontalCollectionView.refresh(imageURLArray)
+	self.horizontalCollectionView.refresh(imageURLArray)
 	
 	```
 	
@@ -178,13 +178,13 @@ private func setUpCellWithImageURLUsingSDWebImage(cell : MILHorizontalCollection
 - To pass an array of `strings that represent locally stored images` to the collection view we can do:
 
 	```swift
-	self.setToHandleLocalImageNameStrings()
+	self.horizontalCollectionView.setToHandleLocalImageNameStrings()
 	 		
 	let imageNameArray = [String]()
 	//populate this array with locally stored image names
 		    
 	//pass array of strings that represent names of locally stored images 
-	self.storyboardHorizontalCollectionView.refresh(imageNameArray)
+	self.horizontalCollectionView.refresh(imageNameArray)
 	```
 
 <br>
