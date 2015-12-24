@@ -24,37 +24,37 @@ Simply copy the **`MILHorizontalCollectionView`** **folder** into your Xcode pro
 <br>
 ## Adding MILHorizontalCollectionView To A View Controller
 
-For both storyboard and programatic implementations, you can reference the `ViewController.swift`file in the example xcode project to see an example in context.
+For both storyboard and programmatic implementations, you can reference the `ViewController.swift`file in the example xcode project to see an example in context.
 
 <br>
-### Programatic Implementation 
+### Programmatic Implementation 
 
-1. In the view controller class file you would like to add a programatic MILHorizontalCollectionViewController to, create a property at the top of the file:
+1. In the view controller class file you would like to add a programmatic MILHorizontalCollectionViewController to, create a property at the top of the file:
 
 	```swift
-	var programaticHorizontalCollectionViewController : MILHorizontalCollectionViewController!
+	var programmaticHorizontalCollectionViewController : MILHorizontalCollectionViewController!
 ```
     
 1. To initialize an instance of MILHorizontalCollectionViewController programmatically and set it the view controller's property we do:
 
 	```swift
 	let flow = MILHorizontalCollectionViewFlowLayout()
-    self.programaticHorizontalCollectionViewController = MILHorizontalCollectionViewController(collectionViewLayout: flow)
+    self.programmaticHorizontalCollectionViewController = MILHorizontalCollectionViewController(collectionViewLayout: flow)
 ```    
     
 1. To set the frame of the MILHorizontalCollectionViewController's view we do:
 
 	```swift
-	self.programaticHorizontalCollectionViewController.view.frame = CGRectMake(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat)
+	self.programmaticHorizontalCollectionViewController.view.frame = CGRectMake(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat)
 ```
  		
  		
 1. To add the MILHorizontalCollectionViewController's view to the view controller's view we do:
 
 	```swift
-	self.addChildViewController(self.programaticHorizontalCollectionViewController)
-   self.programaticHorizontalCollectionViewController.didMoveToParentViewController(self)
-    self.view.addSubview(self.programaticHorizontalCollectionViewController.view)
+	self.addChildViewController(self.programmaticHorizontalCollectionViewController)
+   self.programmaticHorizontalCollectionViewController.didMoveToParentViewController(self)
+    self.view.addSubview(self.programmaticHorizontalCollectionViewController.view)
 ```
 
 <br>
@@ -153,7 +153,7 @@ This of course is the lazy way to fix the problem. Eventually you would want to 
 	//populate this array with url strings
 		    
 	//pass array of strings that represent URLs of images
-	self.storyboardHorizontalCollectionView.refresh(imageNameArray)
+	self.storyboardHorizontalCollectionView.refresh(imageURLArray)
 	
 	```
 	
